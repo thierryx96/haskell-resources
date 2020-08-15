@@ -3,9 +3,9 @@
 - official cheat sheet : https://hackage.haskell.org/package/CheatSheet-1.11/src/CheatSheet.pdf
 - http://learnyouahaskell.com/chapters
 
-# String types 
+## String Types 
 
-## String: [Char]
+**String: [Char]**
 - strict list (Data.List) of chars [Char]
 - inefficient (memory allocated for each definition)
 - use case: every string that does not need heavy processing
@@ -28,7 +28,7 @@ s = "Hello"
 “abcd”
 ```
 
-## Text: Data.Text/Data.Text.Lazy
+**Text: Data.Text/Data.Text.Lazy**
 - Compiler use "Fusion" to avoid multiple allocation
 - String that require processing
 
@@ -40,14 +40,14 @@ t :: T.Text
 t = T.cons ‘c’ (T.map C.toLower (T.append (T.Text “Hello “) (T.Text “ Person!”)))
 ```
 
-## Bytestrings: Data.ByteString/Data.ByteString.Lazy
+**Bytestrings: Data.ByteString/Data.ByteString.Lazy**
 - List of `Word8` objects (8 bits number)
 - Low level representation of string (network, serialization, database)
 
 
 ## String/Text/Bytestring Conversions
 
-### String <-> Text (Data.Text/Data.Text.Lazy)
+**String <-> Text (Data.Text/Data.Text.Lazy)**
 ```
 import Data.Text
 
@@ -55,7 +55,7 @@ pack :: String -> Text
 unpack :: Text -> String
 ```
 
-### String <-> ByteString (Data.ByteString.Char8 - strict only)
+**String <-> ByteString (Data.ByteString.Char8 - strict only)**
 ```
 import Data.ByteString.Char8
 
@@ -63,7 +63,7 @@ pack :: String -> ByteString
 unpack :: ByteString -> String
 ```
 
-### Text (Data.Text) <-> Text (Data.Text.Lazy)
+**Text (Data.Text) <-> Text (Data.Text.Lazy)**
 
 ```
 import Data.Text.Lazy
@@ -71,14 +71,14 @@ toStrict :: Data.Text.Lazy.Text -> Data.Text.Text -- (Lazy to strict)
 fromStrict :: Data.Text.Text -> Data.Text.Lazy.Text -- (Strict to lazy)
 ```
 
-### ByteString (Data.ByteString) <-> Text (Data.ByteString.Lazy)
+**ByteString (Data.ByteString) <-> Text (Data.ByteString.Lazy)**
 ```
 import Data.ByteString.Lazy
 toStrict ...
 fromStrict ...
 ```
 
-### Text (Data.Text) <-> ByteString (Data.ByteString)
+**Text (Data.Text) <-> ByteString (Data.ByteString)**
 Text -> Bytestring (data format must be known)
 ```
 import Data.Text.Encoding
@@ -107,9 +107,7 @@ decodeUtf8’ :: ByteString -> Either UnicodeException Text
 
 ```
 
-## String Language Extensions
-
-### OverloadedStrings
+**String Language Extensions (OverloadedStrings)**
 
 ```
 -- Fails
@@ -142,7 +140,7 @@ myTypeAsString :: MyType
 myTypeAsString = “Hello”
 ```
 
-# Imports
+## Imports
 
 Getting all of this straight in your head is quite tricky, so here is a table (lifted directly from the language reference manual) that roughly summarises the various possibilities:
 
