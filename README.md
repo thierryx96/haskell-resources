@@ -1,7 +1,7 @@
 # Refs:
 
 - official cheat sheet : https://hackage.haskell.org/package/CheatSheet-1.11/src/CheatSheet.pdf
-
+- http://learnyouahaskell.com/chapters
 
 # String types 
 
