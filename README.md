@@ -139,10 +139,24 @@ instance IsString MyType where
 myTypeAsString :: MyType
 myTypeAsString = “Hello”
 ```
-## Monad transformers
+## Monad transformers [mtl]
 
 **ExceptT**
 An Either e a wrapped in any other monad, i.e. m (Either e a)
+
+
+`ExceptT :: m (Either e a) -> ExceptT m Either e a`. e.g. `IO (Either String Int) -> ExceptT IO Either String Int`
+`liftIO :: m a -> ExceptT m Right a` 
+
+```
+getInt :: IO (Either String Int)
+
+
+runExceptT $ do -- converts: ExceptT IO Either String Int -> IO Either String Int
+  i <- ExceptT getInt -- IO (Either String Int) -> ExceptT IO Either String Int
+  liftIO $ print "XXX" -- -> IO() -> ExceptT IO Right Either String ()
+  pure i
+```
 
 **MaybeT**
 
