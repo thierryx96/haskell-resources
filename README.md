@@ -139,6 +139,34 @@ instance IsString MyType where
 myTypeAsString :: MyType
 myTypeAsString = “Hello”
 ```
+## Monad transformers
+
+**ExceptT**
+An Either e a wrapped in any other monad, i.e. m (Either e a)
+
+**MaybeT**
+
+```
+import Control.Monad 
+import Control.Monad.Trans.Maybe 
+import Control.Monad.Trans.Class 
+
+main = do 
+  password <- runMaybeT getPassword
+  case password of 
+    Just p  -> putStrLn "valid password!"
+    Nothing -> putStrLn "invalid password!"
+
+isValid :: String -> Bool
+isValid = (>= 10) . length
+
+getPassword :: MaybeT IO String 
+getPassword = do 
+  password <- lift getLine -- :: IO String -> MaybeT IO String
+  guard (isValid password)
+  return password 
+```
+
 
 ## Imports
 
@@ -159,3 +187,8 @@ import Mod as Foo (x,y)	x, y, Foo.x, Foo.y	(Only import x and y.)
 import qualified Mod as Foo	Foo.x, Foo.y, Foo.z, (Foo.+++)	(Only qualified names, using new qualifier.)
 import qualified Mod as Foo (x,y)	Foo.x, Foo.y	(Only qualified versions of x and y, using new qualifier)
 ```
+
+
+
+
+
