@@ -202,6 +202,8 @@ import qualified Mod as Foo	Foo.x, Foo.y, Foo.z, (Foo.+++)	(Only qualified names
 import qualified Mod as Foo (x,y)	Foo.x, Foo.y	(Only qualified versions of x and y, using new qualifier)
 ```
 
+Update
+
 
 
 
