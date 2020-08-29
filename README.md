@@ -205,3 +205,6 @@ import qualified Mod as Foo (x,y)	Foo.x, Foo.y	(Only qualified versions of x and
 
 
 
+
+
+
